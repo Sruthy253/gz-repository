@@ -2,26 +2,32 @@ version: 2
 
 models:
   - name: sales
+    description: "This model represents sales data."
     tests:
       - unique:
           column_name: "(orders_id || '-' || products_id)"
     
     columns:
       - name: orders_id
+        description: "A unique identifier for each order."
         tests: 
           - not_null 
 
       - name: products_id
+        description: "A unique identifier for each product."
         tests:
           - not_null
 
       - name: qty
+        description: "The quantity"
 
       - name: turnover
+        description: "The total sales revenue generated."
         tests:
           - not_null
 
       - name: purchase_cost
+        description: "The cost price of the product."
         tests:
           - not_null
 
