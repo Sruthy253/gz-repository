@@ -2,9 +2,9 @@
 
 WITH 
 
-  sales AS (SELECT * FROM `my-first-project-393103.gz_raw_data. raw_gz_sales`)
+  sales AS (SELECT * FROM `gz_raw_data.raw_gz_sales`)
 
-  ,product AS (SELECT * FROM `my-first-project-393103.gz_raw_data. raw_gz_product`)
+  ,product AS (SELECT * FROM `gz_raw_data.raw_gz_product`)
 
 SELECT
   s.date_date
@@ -20,6 +20,6 @@ SELECT
   ,CAST(p.purchSE_PRICE AS FLOAT64) AS purchase_price
 	,ROUND(s.quantity*CAST(p.purchSE_PRICE AS FLOAT64),2) AS purchase_cost
 	-- margin --
-	,s.revenue - s.quantity*CAST(p.purchSE_PRICE AS FLOAT64) AS margin
+	,ROUND(s.revenue-s.quantity*CAST(p.purchSE_PRICE AS FLOAT64),2) AS margin
 FROM sales s
 INNER JOIN product p ON s.pdt_id = p.products_id
